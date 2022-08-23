@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import axios from "axios";
 
-const fetchSuperHeroes = () => axios("http://localhost:4000/superheroes1");
+const fetchSuperHeroes = () => axios("http://localhost:4000/superheroes");
 
 export const RQSuperHeroesPage = () => {
   // Note: react query takes longer get error with wrong api url
