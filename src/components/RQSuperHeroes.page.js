@@ -8,7 +8,8 @@ export const RQSuperHeroesPage = () => {
   //       because it automatically retries if the request failed
   const { isLoading, data, isError, error } = useQuery(
     "super-heroes",
-    fetchSuperHeroes
+    fetchSuperHeroes,
+    { catchTime: 5000 }
   );
 
   if (isLoading) {
