@@ -14,6 +14,8 @@ export const RQSuperHeroesPage = () => {
       // staleTime: 10000,
       // refetchOnMount: true,
       // refetchOnWindowFocus: true,
+      // refetchInterval: 2000,
+      // refetchIntervalInBackground: true,
     }
   );
 
