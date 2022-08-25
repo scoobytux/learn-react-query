@@ -3,7 +3,7 @@ import axios from "axios";
 
 const fetchSuperHeroes = () => axios("http://localhost:4000/superheroes");
 
-export const RQSuperHeroesPage = () => {
+const RQSuperHeroesPage = () => {
   const onSuccess = data => {
     console.log("Perform side effect after data fetching", data);
   };
@@ -54,3 +54,5 @@ export const RQSuperHeroesPage = () => {
     </>
   );
 };
+
+export default RQSuperHeroesPage;
