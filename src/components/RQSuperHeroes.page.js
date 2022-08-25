@@ -12,6 +12,8 @@ export const RQSuperHeroesPage = () => {
     console.log("Perform side effect after encountering error", error);
   };
 
+  const getHeroNames = data => data.data.map(hero => hero.name);
+
   // Note: react query takes longer get error with wrong api url
   //       because it automatically retries if the request failed
   const { isLoading, data, isError, error, refetch, isFetching } = useQuery(
@@ -25,8 +27,9 @@ export const RQSuperHeroesPage = () => {
       // refetchInterval: 2000,
       // refetchIntervalInBackground: true,
       // enabled: false,
-      onSuccess,
-      onError,
+      // onSuccess,
+      // onError,
+      select: getHeroNames,
     }
   );
 
@@ -42,8 +45,11 @@ export const RQSuperHeroesPage = () => {
     <>
       <h2>React Query Super Heroes Page</h2>
       <button onClick={refetch}>Fetch heroes</button>
-      {data?.data.map(hero => (
+      {/* {data?.data.map(hero => (
         <div key={hero.name}>{hero.name}</div>
+      ))} */}
+      {data.map(heroName => (
+        <div key={heroName}>{heroName}</div>
       ))}
     </>
   );
