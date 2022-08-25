@@ -31,7 +31,7 @@ function App() {
           </nav>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/rq-super-heros/:heroId" element={<RQSuperHero />} />
+            <Route path="/rq-super-heroes/:heroId" element={<RQSuperHero />} />
             <Route path="super-heroes" element={<SuperHeroesPage />} />
             <Route path="rq-super-heroes" element={<RQSuperHeroesPage />} />
           </Routes>
