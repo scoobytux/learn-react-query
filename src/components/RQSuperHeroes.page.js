@@ -4,6 +4,14 @@ import axios from "axios";
 const fetchSuperHeroes = () => axios("http://localhost:4000/superheroes");
 
 export const RQSuperHeroesPage = () => {
+  const onSuccess = data => {
+    console.log("Perform side effect after data fetching", data);
+  };
+
+  const onError = error => {
+    console.log("Perform side effect after encountering error", error);
+  };
+
   // Note: react query takes longer get error with wrong api url
   //       because it automatically retries if the request failed
   const { isLoading, data, isError, error, refetch, isFetching } = useQuery(
@@ -16,7 +24,9 @@ export const RQSuperHeroesPage = () => {
       // refetchOnWindowFocus: true,
       // refetchInterval: 2000,
       // refetchIntervalInBackground: true,
-      enabled: false,
+      // enabled: false,
+      onSuccess,
+      onError,
     }
   );
 
