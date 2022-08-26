@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -21,15 +21,26 @@ const RQSuperHero = () => {
     );
   };
 
-  const { isLoading, error, isError, data, isFetching } = useQuery(
+  const queryClient = useQueryClient();
+
+  let { isLoading, error, isError, data, isFetching } = useQuery(
     ["hero-details", heroId],
     fetchSuperHeroDetails,
     {
       select: getHeroDetails,
+      initialData: () => {
+        const hero = queryClient
+          .getQueryData("super-heroes")
+          ?.data?.find(hero => hero.id === parseInt(heroId));
+
+        if (hero) {
+          return { data: hero };
+        }
+      },
     }
   );
 
-  if (isLoading || isFetching) {
+  if (isLoading) {
     return <h2>Loading ...</h2>;
   }
 
