@@ -29,5 +29,17 @@
       "id": 3,
       "name": "Thor"
     }
+  ],
+  "users": [
+    {
+      "id": "tu.lna07@gmail.com",
+      "channelId": "codevolution"
+    }
+  ],
+  "channels": [
+    {
+      "id": "codevolution",
+      "courses": ["react", "vue", "angular"]
+    }
   ]
 }

@@ -6,6 +6,7 @@ import SuperHeroesPage from "./components/SuperHeroes.page";
 import RQSuperHero from "./components/RQSuperHero.page";
 import ParallelQueries from "./components/ParallelQueries.page";
 import DynamicParallelQueries from "./components/DynamicParallelQueries.page";
+import DependentQueries from "./components/DependentQueries.page";
 
 // React Query
 import { ReactQueryDevtools } from "react-query/devtools";
@@ -34,6 +35,10 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/rq-parallel" element={<ParallelQueries />} />
+            <Route
+              path="/rq-dependent"
+              element={<DependentQueries email="tu.lna07@gmail.com" />}
+            />
             <Route
               path="/rq-dynamic-parallel"
               element={<DynamicParallelQueries heroIds={[1, 2]} />}
