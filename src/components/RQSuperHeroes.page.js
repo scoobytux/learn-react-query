@@ -1,8 +1,12 @@
-import { useQuery } from "react-query";
+import { useQuery, useMutation } from "react-query";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
 const fetchSuperHeroes = () => axios("http://localhost:4000/superheroes");
+const addSuperHero = hero => {
+  return axios.post("http://localhost:4000/superheroes", hero);
+};
 
 const RQSuperHeroesPage = () => {
   const onSuccess = data => {
@@ -14,6 +18,10 @@ const RQSuperHeroesPage = () => {
   };
 
   const getHeroNames = data => data.data.map(hero => hero.name);
+  const [name, setName] = useState("");
+  const [alterEgo, setAlterEgo] = useState("");
+
+  const { mutate } = useMutation(addSuperHero);
 
   // Note: react query takes longer get error with wrong api url
   //       because it automatically retries if the request failed
@@ -34,6 +42,12 @@ const RQSuperHeroesPage = () => {
     }
   );
 
+  const handleAddHero = () => {
+    console.log({ name, alterEgo });
+    const hero = { name, alterEgo };
+    mutate(hero);
+  };
+
   if (isLoading || isFetching) {
     return <h2>Loading ...</h2>;
   }
@@ -45,6 +59,19 @@ const RQSuperHeroesPage = () => {
   return (
     <>
       <h2>React Query Super Heroes Page</h2>
+      <div>
+        <input
+          type="text"
+          value={name}
+          onChange={e => setName(e.target.value)}
+        />
+        <input
+          type="text"
+          value={alterEgo}
+          onChange={e => setAlterEgo(e.target.value)}
+        />
+        <button onClick={handleAddHero}>Add hero</button>
+      </div>
       <button onClick={refetch}>Fetch heroes</button>
       {data?.data.map(hero => (
         <div key={hero.id}>
