@@ -8,6 +8,7 @@ import ParallelQueries from "./components/ParallelQueries.page";
 import DynamicParallelQueries from "./components/DynamicParallelQueries.page";
 import DependentQueries from "./components/DependentQueries.page";
 import PaginatedQueries from "./components/PaginatedQueries.page";
+import InfiniteQueries from "./components/InfiniteQueries.page";
 
 // React Query
 import { ReactQueryDevtools } from "react-query/devtools";
@@ -37,6 +38,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/rq-parallel" element={<ParallelQueries />} />
             <Route path="/rq-paginated" element={<PaginatedQueries />} />
+            <Route path="/rq-infinite" element={<InfiniteQueries />} />
             <Route
               path="/rq-dependent"
               element={<DependentQueries email="tu.lna07@gmail.com" />}
