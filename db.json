@@ -24,6 +24,11 @@
       "name": "Tu",
       "alterEgo": "le",
       "id": 5
+    },
+    {
+      "name": "hello",
+      "alterEgo": "friend",
+      "id": 6
     }
   ],
   "friends": [

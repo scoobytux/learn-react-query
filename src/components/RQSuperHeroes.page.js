@@ -22,8 +22,10 @@ const RQSuperHeroesPage = () => {
   const [alterEgo, setAlterEgo] = useState("");
   const queryClient = useQueryClient();
   const { mutate } = useMutation(addSuperHero, {
-    onSuccess: () => {
-      queryClient.invalidateQueries("super-heroes");
+    onSuccess: data => {
+      queryClient.setQueryData("super-heroes", oldQueryData => {
+        return { ...oldQueryData, data: [...oldQueryData.data, data.data] };
+      });
     },
   });
 
