@@ -1,4 +1,4 @@
-import { useQuery, useMutation } from "react-query";
+import { useQuery, useMutation, useQueryClient } from "react-query";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -20,8 +20,12 @@ const RQSuperHeroesPage = () => {
   const getHeroNames = data => data.data.map(hero => hero.name);
   const [name, setName] = useState("");
   const [alterEgo, setAlterEgo] = useState("");
-
-  const { mutate } = useMutation(addSuperHero);
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation(addSuperHero, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("super-heroes");
+    },
+  });
 
   // Note: react query takes longer get error with wrong api url
   //       because it automatically retries if the request failed
